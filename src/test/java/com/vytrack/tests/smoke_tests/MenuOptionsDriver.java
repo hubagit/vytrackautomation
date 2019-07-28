@@ -1,6 +1,7 @@
 package com.vytrack.tests.smoke_tests;
 
-import com.vytrack.tests.utilities.*;
+import com.vytrack.utilities.BrowserFactory;
+import com.vytrack.utilities.SeleniumUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;

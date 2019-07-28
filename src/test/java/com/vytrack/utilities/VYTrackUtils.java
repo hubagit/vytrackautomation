@@ -14,6 +14,7 @@ public class VYTrackUtils {
     private static String usernamelocator = "prependedInput";
     private static String passwordLocator = "prependedInput2";
     private static String loaderMaskLocator = "div[class='loader-mask shown']";
+    private static String pageSubTitleLocator = "h1[class='oro-subtitle']";
 
 
     /**
@@ -35,21 +36,15 @@ public class VYTrackUtils {
      * For example: if tab is equals to Activities, and module equals to Calls,
      * Then method will navigate user to this page: http://qa2.vytrack.com/call/
      *
-     * @param driver
+     *
      * @param tab
      * @param module
      */
-    public static void navigateToModule(WebDriver driver, String tab, String module){
+    public static void navigateToModule(String tab, String module){
         String tabLocator = "//span[contains(text(),'"+tab+"') and contains(@class, 'title title-level-1')]";
         String moduleLocator = "//span[contains(text(),'"+module+"') and contains(@class, 'title title-level-2')]";
-//        driver.findElement(By.xpath(tabLocator)).click();
-        SeleniumUtils.clickWithWait(driver, By.xpath(tabLocator), 5);
-//        SeleniumUtils.waitPlease(1);
-        driver.findElement(By.xpath(moduleLocator)).click();
-
-//        SeleniumUtils.clickWithWait(driver, By.xpath(moduleLocator), 5);
-
-//        SeleniumUtils.waitPlease(2);
+        SeleniumUtils.clickWithWait(Driver.getDriver(), By.xpath(tabLocator), 5);
+        Driver.getDriver().findElement(By.xpath(moduleLocator)).click();
     }
 
     /**
@@ -65,5 +60,31 @@ public class VYTrackUtils {
         }catch (Exception e){
             System.out.println(e+" :: Loader mask doesn't present.");
         }
+    }
+
+    /**
+     * Waits until loader screen is disappeared. If loader screen will not pop up at all,
+     * NoSuchElementException will be handled with try/catch block
+     * Thus, we can continue in any case.
+     */
+    public static void waitUntilLoaderScreenDisappear() {
+        try {
+            WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Long.valueOf(ConfigurationReader.getProperty("explicitwait")));
+            wait.until(ExpectedConditions.invisibilityOf(Driver.getDriver().findElement(By.cssSelector(loaderMaskLocator))));
+        }catch (Exception e){
+            System.out.println(e+" :: Loader mask doesn't present.");
+        }
+    }
+
+
+    /**
+     *
+     * @return page name, for example: Dashboard
+     */
+    public static String getPageSubTitle(){
+        //any time we verify page name or page subtitle, loader mask appears
+        waitUntilLoaderScreenDisappear(Driver.getDriver());
+        return Driver.getDriver().findElement(By.cssSelector(pageSubTitleLocator)).getText();
+
     }
 }

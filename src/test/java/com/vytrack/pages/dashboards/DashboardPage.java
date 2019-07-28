@@ -1,4 +1,5 @@
 package com.vytrack.pages.dashboards;
 
-public class Dashboards {
+public class DashboardPage {
+
 }

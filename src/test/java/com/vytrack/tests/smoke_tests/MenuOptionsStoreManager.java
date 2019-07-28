@@ -1,7 +1,7 @@
 package com.vytrack.tests.smoke_tests;
 
-import com.vytrack.tests.utilities.BrowserFactory;
-import com.vytrack.tests.utilities.SeleniumUtils;
+import com.vytrack.utilities.BrowserFactory;
+import com.vytrack.utilities.SeleniumUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -40,7 +40,7 @@ public class MenuOptionsStoreManager {
         action.click().build().perform();
         SeleniumUtils.waitPlease(3);
 
-        String expectedPageTitle = "Dashboard - Dashboards";
+        String expectedPageTitle = "Dashboard - DashboardPage";
         String actualPageTitle = driver.getTitle();
         Assert.assertEquals(actualPageTitle,expectedPageTitle);
         SeleniumUtils.waitPlease(3);

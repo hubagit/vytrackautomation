@@ -1,7 +1,8 @@
 package com.vytrack.tests.components.login_navigation;
 
-import com.vytrack.tests.utilities.BrowserFactory;
-import com.vytrack.tests.utilities.SeleniumUtils;
+
+import com.vytrack.utilities.BrowserFactory;
+import com.vytrack.utilities.SeleniumUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
